@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_1yixp6i" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="Decision_13nychf" name="Kundengruppen">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+      <biodi:edge source="InputData_1nstcrd">
+        <biodi:waypoints x="184" y="375" />
+        <biodi:waypoints x="247" y="280" />
+      </biodi:edge>
+      <biodi:edge source="InputData_09fyo4q">
+        <biodi:waypoints x="361" y="385" />
+        <biodi:waypoints x="308" y="280" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0xfx9d6">
+        <biodi:waypoints x="564" y="390" />
+        <biodi:waypoints x="375" y="280" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0ke6med">
+        <biodi:waypoints x="559" y="270" />
+        <biodi:waypoints x="380" y="243" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_1nstcrd" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_09fyo4q" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0xfx9d6" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0ke6med" />
+    </informationRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="InputClause_0bp57h3" label="Zahlungskonditionen" camunda:inputVariable="Z">
+        <inputExpression id="LiteralExpression_01tt851" typeRef="integer">
+          <text>Zahlungskonditionen</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0k4ytt6" label="Inland" camunda:inputVariable="I">
+        <inputExpression id="LiteralExpression_13mhxe7" typeRef="boolean">
+          <text>Inland</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0q8ngmv" label="Vertragsbedingungen" camunda:inputVariable="sV">
+        <inputExpression id="LiteralExpression_1wjangd" typeRef="integer">
+          <text>Vertragsbedingungen</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="KG" name="Kundengruppe" typeRef="string">
+        <outputValues id="UnaryTests_1acnbvt">
+          <text>"KG1","KG2","KG3","KG4"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_0bcf8rz">
+        <inputEntry id="UnaryTests_1kj7i9k">
+          <text>]50000..100000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qzhj3l">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oauv37">
+          <text>[2..4]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1cbagwf">
+          <text>"KG1"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0upv3vp">
+        <inputEntry id="UnaryTests_19fmlco">
+          <text>&lt;50000,&gt;100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x4usbh">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ni6om7">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ppjqcu">
+          <text>"KG2"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jjszs8">
+        <inputEntry id="UnaryTests_1i2t4hl">
+          <text>&gt; 100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17qmwhp">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13fhe1g">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1todzhb">
+          <text>"KG3"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lkt1nv">
+        <inputEntry id="UnaryTests_1wvh4pk">
+          <text>&lt;=100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zh3xps">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oc3s0b">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1uldkuh">
+          <text>"KG4"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1nstcrd" name="R">
+    <extensionElements>
+      <biodi:bounds x="106" y="375" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_09fyo4q" name="ZK">
+    <extensionElements>
+      <biodi:bounds x="310" y="385" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0xfx9d6" name="Inland">
+    <extensionElements>
+      <biodi:bounds x="540" y="390" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0ke6med" name="sV">
+    <extensionElements>
+      <biodi:bounds x="559" y="256" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>
